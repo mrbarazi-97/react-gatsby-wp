@@ -1,15 +1,19 @@
-import { Link } from "gatsby"
-import { navigate } from "gatsby-link"
+//import { Link } from "gatsby"
+//import { navigate } from "gatsby-link"
 import React from "react"
-import Header from "../components/header"
+//import Header from "../components/Header"
+//import Footer from "../components/Footer"
+import Post from "../components/Post"
+import PrimaryLayout from "../layouts/PrimaryLayouts"
 
 export default function Home() {
   return (
-    <div>
-      <Header title="My header"></Header>
-      <h1>Hii Their</h1>
-      <Link to="https://Google.com" />
-      <button onClick={() => navigate("/test")}>Test</button>
-    </div>
+    <PrimaryLayout column="col-xs-6">
+      <Post title="First Post" excerpt="We are create a new website" />
+      <Post title="First Post" excerpt="We are create a new website" />
+      <Post title="First Post" excerpt="We are create a new website" />
+      <Post title="First Post" excerpt="We are create a new website" />
+      <Post title="First Post" excerpt="We are create a new website" />
+    </PrimaryLayout>
   )
 }
