@@ -5,15 +5,41 @@ import React from "react"
 //import Footer from "../components/Footer"
 import Post from "../components/Post"
 import PrimaryLayout from "../layouts/PrimaryLayouts"
+import { graphql } from "gatsby"
 
-export default function Home() {
+export default ({ data }) => {
+  console.log(data)
   return (
     <PrimaryLayout column="col-xs-6">
-      <Post title="First Post" excerpt="We are create a new website" />
-      <Post title="First Post" excerpt="We are create a new website" />
-      <Post title="First Post" excerpt="We are create a new website" />
-      <Post title="First Post" excerpt="We are create a new website" />
-      <Post title="First Post" excerpt="We are create a new website" />
+      {data.allMarkdownRemark.nodes.map(node => (
+        <Post
+          image={node.frontmatter.image}
+          title={node.frontmatter.title}
+          date={node.frontmatter.date}
+          excerpt={node.excerpt}
+          readmore={node.fields.slug}
+        />
+      ))}
     </PrimaryLayout>
   )
 }
+
+export const query = graphql`
+  {
+    allMarkdownRemark {
+      nodes {
+        frontmatter {
+          title
+          date
+          keywords
+          image
+        }
+        excerpt
+        html
+        fields {
+          slug
+        }
+      }
+    }
+  }
+`
